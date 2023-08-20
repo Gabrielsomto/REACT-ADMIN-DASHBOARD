@@ -8,6 +8,7 @@ import '@fontsource/roboto/700.css';
 import theme from './config/theme';
 import AppHeader from './components/AppHeader';
 import SideNav from './components/sideNav';
+import { ProSidebarProvider } from 'react-pro-sidebar';
 
 
 
@@ -16,6 +17,7 @@ function App() {
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}>
+        <ProSidebarProvider>
         <CssBaseline />
         <AppHeader />
         <Box sx={styles.container}>
@@ -24,6 +26,7 @@ function App() {
 
           </Box>
         </Box>
+        </ProSidebarProvider>
       </ThemeProvider>
     </React.Fragment>
     
