@@ -1,11 +1,11 @@
-import { Box, Typography } from "@mui/material";
-import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
+import { Avatar, Box, Typography, useTheme } from "@mui/material";
+import { Sidebar, Menu, MenuItem, SubMenu, useProSidebar } from "react-pro-sidebar";
 import DashboardCustomizeIcon from "@mui/icons-material/DashboardCustomize";
 import StyleIcon from "@mui/icons-material/Style";
 import SourceIcon from "@mui/icons-material/Source";
-import { useTheme } from '@mui/material/styles';
 
 function SideNav() {
+  const { collapsed } = useProSidebar();
    const theme = useTheme();
   
   return (
@@ -15,8 +15,15 @@ function SideNav() {
         top: 'auto'
       }}
       breakPoint="md"
-      backgroundColor={theme.palette.neutral.main}
+      backgroundColor={theme.palette.primary.main}
     >
+
+      <Box sx={styles.avatarContainer}>
+          <Avatar sx={styles.avatar} alt='Channel Name' src='src/assets/edited logo.jpg'></Avatar>
+          {!collapsed ? <Typography variant="body2" sx={styles.yourChannel}>Your Channel</Typography> : null}
+            {!collapsed ? <Typography variant="overline">React with Masoud</Typography> : null}
+
+      </Box>
       <Menu>
         <MenuItem active icon={<DashboardCustomizeIcon />}>
           <Typography variant="body2">Dashboard</Typography>
@@ -42,3 +49,23 @@ function SideNav() {
 }
 
 export default SideNav;
+
+/**
+ * @type {import("@mui/material").SxProps}
+ */
+const styles = {
+  avatarContainer: {
+      display: "flex",
+      alignItems: "center",
+      flexDirection: 'column',
+      my: 5
+  },
+  avatar: {
+      width: '40%',
+      height: 'auto'
+  },
+  yourChannel: {
+      mt: 1
+  }
+
+}
